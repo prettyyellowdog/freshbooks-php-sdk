@@ -35,8 +35,11 @@ use amcintosh\FreshBooks\Model\Task;
 use amcintosh\FreshBooks\Model\TaskList;
 use amcintosh\FreshBooks\Model\Tax;
 use amcintosh\FreshBooks\Model\TaxList;
+use amcintosh\FreshBooks\Model\TeamMember;
+use amcintosh\FreshBooks\Model\TeamMemberList;
 use amcintosh\FreshBooks\Resource\AccountingResource;
 use amcintosh\FreshBooks\Resource\AuthResource;
+use amcintosh\FreshBooks\Resource\BusinessResource;
 use amcintosh\FreshBooks\Resource\ProjectResource;
 
 class FreshBooksClient
@@ -310,5 +313,15 @@ class FreshBooksClient
     public function projects(): ProjectResource
     {
         return new ProjectResource($this->httpClient, 'projects', 'projects', Project::class, ProjectList::class);
+    }
+
+    /**
+     * FreshBooks team resource with calls to get, list
+     *
+     * @return BusinessResource
+     */
+    public function team(): BusinessResource
+    {
+        return new BusinessResource($this->httpClient, 'team_members', TeamMember::class, TeamMemberList::class);
     }
 }
